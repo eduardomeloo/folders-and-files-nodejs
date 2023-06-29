@@ -1,17 +1,26 @@
+/*
+    1- Criar um novo arquivo e inserir dados
+    2- Ler um arquivo
+    3- Editar um arquivo existente
+    4- Diferença entre método síncrono e assíncrono
+    5- Substituição de Palavras (Replace)
+    6- Modificar determinada Linha (Split)
+*/
+
 const fs = require('fs');
 const path = require('path');
 
-console.log(path.dirname);
-console.log(__dirname);
-let caminhoNovoArquivo = './teste2.txt'
 
-//criar ou sobrescrever um arquivo
-let novoConteudo = 'esse é um novo conteúdo!';
-fs.writeFileSync(caminhoNovoArquivo, novoConteudo, (err) => {
+fs.write
+//1- Criar um novo arquivo e inserir dados
+let caminhoNovoArquivo = path.join(__dirname, 'uploads/file1.txt');
+let conteudo = 'esse é um novo conteúdo!';
+fs.writeFileSync(caminhoNovoArquivo, conteudo, (err) => {
     if(err) throw err;
-    //console.log('Arquivo criado ou sobrescrito com sucesso')
+    console.log('Arquivo criado ou sobrescrito com sucesso')
 });
 
+/*
 //ler um arquivo
 fs.readFile(caminhoNovoArquivo, 'utf8', (err, data) => {
     if(err) throw err;  
@@ -32,3 +41,4 @@ for(let i = 0; i <= 400; i++) {
        // console.log('Conteúdo adicionado com sucesso!');
     });
 }
+*/
