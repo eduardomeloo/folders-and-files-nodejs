@@ -2,7 +2,7 @@
     1- Criar uma pasta/diretório -> Recursivamente com validação
     2- Remover um diretório vazio
     3- Validar se arquivo existe no diretório e criar, caso não exista
-    4- Remover um arquivo do diretório
+    4- Validar se o arquivo existe e excluir
     5- Remover um diretório e todos os seus arquivos filho (subpastas e arquivos)
  */
 
@@ -57,7 +57,17 @@ fs.access(meuPrimeiroArquivo, fs.constants.F_OK, (err) => {
     } else {
         console.log('O arquivo já existe e não será criado!')
     }
-})
+});
+
+//4- Validar se um arquivo existe e excluir
+fs.access(meuPrimeiroArquivo, fs.constants.F_OK, (err) => {
+    if(err) {
+        console.log('O arquivo não existe e não pode ser excluído!')
+    } else {
+        fs.unlinkSync(meuPrimeiroArquivo);
+        console.log('O arquivo existe e será excluído!')
+    }
+});
 
 //5- Remover um diretório e todos os seus arquivos filho (subpastas e arquivos)
 fs.rm(fullDir, { recursive: true }, (err) => {
