@@ -4,11 +4,12 @@
     3- Validar se arquivo existe no diretório e criar, caso não exista
     4- Validar se o arquivo existe e excluir
     5- Remover um diretório e todos os seus arquivos filho (subpastas e arquivos)
+    6- Localizar arquivos ou pastas analizando diretório e subdiretório
  */
 
 const fs = require('fs');
 const path = require('path');
-
+/*
 //1- Criar uma pasta/diretório -> Recursivamente com validação
 let novaPasta = 'novaPasta';
 let novasPastas = 'novaPasta1/novaPasta2/novaPasta3';
@@ -77,3 +78,27 @@ fs.rm(fullDir, { recursive: true }, (err) => {
     }
     console.log('Pasta removida com sucesso.');
 });
+*/
+//6- Localizar arquivos ou pastas analizando diretório e subdiretório
+function localizar(diretorio, nome) {
+    if (fs.existsSync(diretorio)) {
+        fs.readdirSync(diretorio).forEach(async (file) => {
+            const curPath = `${diretorio}/${file}`;
+            if (fs.lstatSync(curPath).isDirectory()) {
+                if(file == nome) {
+                    console.log(`Pasta com o mesmo nome encontrada em ${curPath}`);
+                }                
+                localizar(curPath, nome);
+            } else {
+                if(file == nome) {
+                    console.log(`Arquivo com o mesmo nome encontrado em ${curPath}`);
+                } 
+            }
+        });
+    } else {
+        console.log('O caminho informado não é um diretório')
+    }
+}
+localizar(__dirname, 'folders.js' )
+
+    
